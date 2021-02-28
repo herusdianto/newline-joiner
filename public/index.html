@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="heru.rusdianto.93@gmail.com">
+
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="description" content="NewLine Joiner Tool By Selected Separator"/>
+    <meta name="theme-color" content="#5755d9"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+    <meta name="apple-mobile-web-app-title" content="Kalkulator THR"/>
+    <link rel="apple-touch-icon" href="icons/128x128.png"/>
+    <meta name="msapplication-TileColor" content="#5755d9">
+    <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+
+    <title>NewLine Joiner</title>
+    <style>
+        .container {
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        .panel {
+            padding: 20px;
+        }
+
+        .hero a {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero hero-sm bg-primary">
+        <div class="hero-body">
+            <a href="https://github.com/herusdianto/newline-joiner" target="_blank"><h1>
+                NewLine Joiner
+            </h1></a>
+            <p>
+                NewLine Joiner Tool By Selected Separator
+            </p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="panel">
+            <div class="columns">
+                <div class="column col-5 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="form-label" for="input">Input</label>
+                        <div class="control">
+                            <textarea class="form-input" placeholder="Type the input" id="input" rows="20"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column col-2 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="form-label" for="separator">Separator Character</label>
+                        <div class="control">
+                            <input class="form-input" placeholder="Type the separator character" id="separator" value=",">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Quotes</label>
+                        <label class="form-radio">
+                            <input type="radio" name="quotes" value="noQuote" checked>
+                            <i class="form-icon"></i> No Quote
+                        </label>
+                        <label class="form-radio">
+                            <input type="radio" name="quotes" value="singleQuote">
+                            <i class="form-icon"></i> Single Quote
+                        </label>
+                        <label class="form-radio">
+                            <input type="radio" name="quotes" value="doubleQuote">
+                            <i class="form-icon"></i> Double Quote
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-block">
+                        <button class="btn btn-lg" onclick="join()" id="joinButton">Join</button>
+                        <button class="btn btn-lg" onclick="copy()" id="copyButton">Copy</button>
+                    </div>
+                </div>
+
+                <div class="column col-5 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="form-label" for="output">Output</label>
+                        <div class="control">
+                            <textarea class="form-input" placeholder="The output" id="output" rows="20"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getCheckedQuote(name) {
+            let quotes = document.getElementsByName(name)
+
+            for (var i = 0, length = quotes.length; i < length; i++) {
+                if (quotes[i].checked) {
+                    return quotes[i].value
+                }
+            }
+        }
+
+        function processJoinWithoutQuote(input, separator) {
+            return input.replace(/\r?\n/g, separator)
+        }
+
+        function processJoinWithQuote(input, separator, quote) {
+            let splitedInputs = input.split(/\r?\n/g)
+            let quotedInputs = []
+
+            splitedInputs.forEach(splitedInput => {
+                let quoteCharacter = "'"
+
+                if (quote === 'doubleQuote')
+                    quoteCharacter = '"'
+
+                quotedInputs.push(quoteCharacter + splitedInput + quoteCharacter)
+            })
+
+            return quotedInputs.join(separator)
+        }
+
+        function join() {
+            let input = document.getElementById('input').value
+            let separator = document.getElementById('separator').value
+            let quote = getCheckedQuote('quotes')
+
+            let output = ''
+
+            if (quote === 'noQuote')
+                output = processJoinWithoutQuote(input, separator)
+            else
+                output = processJoinWithQuote(input, separator, quote)
+
+            document.getElementById('output').value = output
+
+            let copyButton = document.getElementById('copyButton')
+            copyButton.textContent = 'Copy'
+        }
+
+        function copy() {
+            let output = document.getElementById('output')
+
+            output.select();
+            output.setSelectionRange(0, 99999); /* For mobile devices */
+
+            document.execCommand('copy');
+
+            let copyButton = document.getElementById('copyButton')
+            copyButton.textContent = 'Copied'
+        }
+    </script>
+</body>
+</html>
