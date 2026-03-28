@@ -92,4 +92,13 @@ if (input && separator && quotes) {
     quotes.addEventListener('change', join);
 }
 
+// Isi default input jika kosong saat halaman dimuat
+window.addEventListener('DOMContentLoaded', function() {
+    var input = document.getElementById('input');
+    if (input && input.value.trim() === '') {
+        input.value = `Line 1\nLine 2\nLine 3`;
+        join(); // langsung konversi agar output juga muncul
+    }
+});
+
 document.getElementById('currentYear').textContent = new Date().getFullYear();
