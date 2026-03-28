@@ -305,7 +305,7 @@ footer a {
     justify-content: flex-end;
     align-items: center;
     gap: 1.2rem;
-    margin-bottom: 1.2rem;
+    margin-top: 1.2rem;
     padding: 0 20px;
 }
 .theme-toggle {
@@ -360,4 +360,19 @@ footer a {
 .dark-mode .github-link, .dark-mode .github-icon, .dark-mode #theme-icon svg {
     color: #f1f5f9 !important;
     fill: #f1f5f9 !important;
+}
+
+.client-side-note {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.dark-mode .client-side-note {
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
 }
