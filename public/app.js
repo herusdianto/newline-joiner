@@ -91,3 +91,5 @@ if (input && separator && quotes) {
     separator.addEventListener('input', join);
     quotes.addEventListener('change', join);
 }
+
+document.getElementById('currentYear').textContent = new Date().getFullYear();
