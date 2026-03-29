@@ -35,20 +35,22 @@ body {
     padding: 20px;
 }
 
-.hero {
+/* Header */
+header {
     text-align: center;
-    margin-bottom: 30px;
-    padding: 20px 0 10px 0;
+    padding: 20px;
 }
-.hero h1 {
-    font-size: 2.2rem;
+
+header h1 {
+    font-size: 2.5rem;
     margin-bottom: 10px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
-.hero p {
+
+header p {
     color: var(--text-secondary);
     font-size: 1.1rem;
 }
@@ -285,6 +287,55 @@ footer .copyright {
 }
 .dark-mode .file-drop-zone.dragover {
     background: rgba(99, 102, 241, 0.15) !important;
+}
+
+.dark-mode header h1,
+.dark-mode header p,
+.dark-mode .tab-btn,
+.dark-mode .tab-btn.active,
+.dark-mode .output-actions button,
+.dark-mode .action-btn,
+.dark-mode .copy-btn,
+.dark-mode .download-btn,
+.dark-mode .file-info .filename,
+.dark-mode .file-info .filesize,
+.dark-mode .file-info .filetype,
+.dark-mode .status,
+.dark-mode footer,
+.dark-mode footer a {
+    color: #fff !important;
+}
+.dark-mode .tab-btn.active {
+    background: #333 !important;
+    border-color: #6366f1 !important;
+}
+.dark-mode .tab-btn {
+    background: #222 !important;
+    border-color: #333 !important;
+}
+.dark-mode .action-btn {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+}
+.dark-mode .file-drop-zone {
+    background: #222 !important;
+    border-color: #333 !important;
+}
+.dark-mode .file-drop-zone .drop-content p,
+.dark-mode .file-drop-zone .drop-content small {
+    color: #e5e7eb !important;
+}
+.dark-mode .file-drop-zone .icon {
+    color: #a5b4fc !important;
+}
+.dark-mode .file-drop-zone.dragover {
+    background: rgba(99, 102, 241, 0.2) !important;
+}
+.dark-mode textarea,
+.dark-mode input[type="text"],
+.dark-mode input[type="file"] {
+    background: var(--input-bg);
+    color: var(--text-primary);
+    border-color: 1.5px solid var(--card-border);
 }
 footer a {
     color: var(--footer-link) !important;

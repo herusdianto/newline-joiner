@@ -45,14 +45,13 @@
         </div>
     </div>
 
+    <header>
+        <h1>Join Lines</h1>
+        <p>Convert multiline text into a single line with custom separator and quotes.</p>
+        <p class="client-side-note"><strong>100% Client-side:</strong> All processing is done in your browser. <u>No data is sent to any server.</u></p>
+    </header>
+
     <div class="container wide-container">
-        <section class="hero hero-sm bg-primary">
-            <div class="hero-body">
-                <h1>Join Lines</h1>
-                <p>Convert multiline text into a single line with custom separator and quotes.</p>
-                <p class="client-side-note">⚡ <strong>100% Client-side:</strong> All processing is done in your browser. <u>No data is sent to any server.</u></p>
-            </div>
-        </section>
         <form>
             <div class="form-group">
                 <label class="form-label" for="input">Input</label>
@@ -66,9 +65,9 @@
                 <div class="quotes-group">
                     <label class="form-label" for="quotes">Quotes</label>
                     <select class="form-input" id="quotes" name="quotes">
-                        <option value="noQuote">No Quote</option>
-                        <option value="singleQuote">Single Quote</option>
-                        <option value="doubleQuote">Double Quote</option>
+                        <option value="noQuote"></option>
+                        <option value="singleQuote">'</option>
+                        <option value="doubleQuote">"</option>
                     </select>
                 </div>
             </div>
