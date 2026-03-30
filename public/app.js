@@ -1,3 +1,10 @@
+function saveToLocalStorage() {
+    localStorage.setItem('linejoiner_input', document.getElementById('input').value);
+    localStorage.setItem('linejoiner_separator', document.getElementById('separator').value);
+    localStorage.setItem('linejoiner_quotes', document.getElementById('quotes').value);
+    localStorage.setItem('linejoiner_output', document.getElementById('output').value);
+}
+
 function getCheckedQuote() {
     return document.getElementById('quotes').value;
 }
@@ -38,6 +45,7 @@ function join() {
 
     let copyButton = document.getElementById('copyButton')
     copyButton.textContent = 'Copy'
+    saveToLocalStorage();
 }
 
 function copy() {
@@ -90,7 +98,31 @@ if (input && separator && quotes) {
     input.addEventListener('input', join);
     separator.addEventListener('input', join);
     quotes.addEventListener('change', join);
+    // Save on every change
+    input.addEventListener('input', saveToLocalStorage);
+    separator.addEventListener('input', saveToLocalStorage);
+    quotes.addEventListener('change', saveToLocalStorage);
 }
+// Restore from localStorage on load
+window.addEventListener('DOMContentLoaded', function() {
+    var input = document.getElementById('input');
+    var separator = document.getElementById('separator');
+    var quotes = document.getElementById('quotes');
+    var output = document.getElementById('output');
+    if (localStorage.getItem('linejoiner_input')) {
+        input.value = localStorage.getItem('linejoiner_input');
+    }
+    if (localStorage.getItem('linejoiner_separator')) {
+        separator.value = localStorage.getItem('linejoiner_separator');
+    }
+    if (localStorage.getItem('linejoiner_quotes')) {
+        quotes.value = localStorage.getItem('linejoiner_quotes');
+    }
+    if (localStorage.getItem('linejoiner_output')) {
+        output.value = localStorage.getItem('linejoiner_output');
+    }
+    join(); // Ensure output is up to date
+});
 
 // Isi default input jika kosong saat halaman dimuat
 window.addEventListener('DOMContentLoaded', function() {
@@ -102,3 +134,23 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+// Restore last session from localStorage
+window.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('input');
+    const separator = document.getElementById('separator');
+    const quotes = document.getElementById('quotes');
+    const output = document.getElementById('output');
+    if (localStorage.getItem('linejoiner_input')) {
+        input.value = localStorage.getItem('linejoiner_input');
+    }
+    if (localStorage.getItem('linejoiner_separator')) {
+        separator.value = localStorage.getItem('linejoiner_separator');
+    }
+    if (localStorage.getItem('linejoiner_quotes')) {
+        quotes.value = localStorage.getItem('linejoiner_quotes');
+    }
+    if (localStorage.getItem('linejoiner_output')) {
+        output.value = localStorage.getItem('linejoiner_output');
+    }
+});
