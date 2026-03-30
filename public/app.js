@@ -2,7 +2,6 @@ function saveToLocalStorage() {
     localStorage.setItem('linejoiner_input', document.getElementById('input').value);
     localStorage.setItem('linejoiner_separator', document.getElementById('separator').value);
     localStorage.setItem('linejoiner_quotes', document.getElementById('quotes').value);
-    localStorage.setItem('linejoiner_output', document.getElementById('output').value);
 }
 
 function getCheckedQuote() {
@@ -108,7 +107,6 @@ window.addEventListener('DOMContentLoaded', function() {
     var input = document.getElementById('input');
     var separator = document.getElementById('separator');
     var quotes = document.getElementById('quotes');
-    var output = document.getElementById('output');
     if (localStorage.getItem('linejoiner_input')) {
         input.value = localStorage.getItem('linejoiner_input');
     }
@@ -117,9 +115,6 @@ window.addEventListener('DOMContentLoaded', function() {
     }
     if (localStorage.getItem('linejoiner_quotes')) {
         quotes.value = localStorage.getItem('linejoiner_quotes');
-    }
-    if (localStorage.getItem('linejoiner_output')) {
-        output.value = localStorage.getItem('linejoiner_output');
     }
     join(); // Ensure output is up to date
 });
@@ -140,7 +135,6 @@ window.addEventListener('DOMContentLoaded', function() {
     const input = document.getElementById('input');
     const separator = document.getElementById('separator');
     const quotes = document.getElementById('quotes');
-    const output = document.getElementById('output');
     if (localStorage.getItem('linejoiner_input')) {
         input.value = localStorage.getItem('linejoiner_input');
     }
@@ -149,8 +143,5 @@ window.addEventListener('DOMContentLoaded', function() {
     }
     if (localStorage.getItem('linejoiner_quotes')) {
         quotes.value = localStorage.getItem('linejoiner_quotes');
-    }
-    if (localStorage.getItem('linejoiner_output')) {
-        output.value = localStorage.getItem('linejoiner_output');
     }
 });
